@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:AppUsuario.Models"
+             x:Class="AppUsuario.Views.AdminPage"
+             Title="Área do Administrador">
+
+    <Grid
+        Padding="20"
+        RowSpacing="10"
+        RowDefinitions="Auto,Auto,Auto,*">
+
+        <!-- O nome vem do Singleton UsuarioAtual -->
+        <Label
+            Grid.Row="0"
+            Text="{Binding Path=Nome, Source={x:Static models:UsuarioAtual.Instancia}, StringFormat='Bem-vindo, {0}!'}"
+            FontSize="24"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            Margin="0,10,0,0"/>
+
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="*,*"
+            RowDefinitions="Auto,Auto"
+            ColumnSpacing="10"
+            RowSpacing="10">
+
+            <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Cadastrar objeto"
+                Clicked="btnCadastrar_Clicked"/>
+
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="Histórico"
+                Clicked="btnHistorico_Clicked"/>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="Meus dados"
+                BackgroundColor="{StaticResource Secondary}"
+                TextColor="{StaticResource Primary}"
+                Clicked="btnMeusDados_Clicked"/>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="Sair"
+                BackgroundColor="{StaticResource Secondary}"
+                TextColor="#C62828"
+                Clicked="btnSair_Clicked"/>
+
+        </Grid>
+
+        <Label
+            Grid.Row="2"
+            Text="Objetos cadastrados"
+            FontSize="18"
+            FontAttributes="Bold"
+            Margin="0,10,0,0"/>
+
+        <CollectionView
+            Grid.Row="3"
+            ItemsSource="{Binding Itens}">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.EmptyView>
+                <Label
+                    Text="Nenhum objeto cadastrado ainda."
+                    HorizontalOptions="Center"
+                    Margin="0,30,0,0"/>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border
+                        Stroke="{StaticResource Gray400}"
+                        StrokeShape="RoundRectangle 8"
+                        Padding="12">
+
+                        <VerticalStackLayout Spacing="3">
+
+                            <Label
+                                Text="{Binding Nome}"
+                                FontSize="18"
+                                FontAttributes="Bold"/>
+
+                            <Label Text="{Binding Descricao}"/>
+
+                            <Label Text="{Binding Categoria, StringFormat='Categoria: {0}'}"/>
+
+                            <Label Text="{Binding Local, StringFormat='Local: {0}'}"/>
+
+                            <Label Text="{Binding Status, StringFormat='Status: {0}'}"/>
+
+                            <Label
+                                Text="{Binding DataRegistro, StringFormat='Registrado em {0:dd/MM/yyyy HH:mm}'}"
+                                FontSize="12"
+                                TextColor="{StaticResource Gray500}"/>
+
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="10"
+                                Margin="0,8,0,0">
+
+                                <Button
+                                    Grid.Column="0"
+                                    Text="Editar"
+                                    HeightRequest="40"
+                                    Clicked="btnEditar_Clicked"/>
+
+                                <Button
+                                    Grid.Column="1"
+                                    Text="Excluir"
+                                    HeightRequest="40"
+                                    BackgroundColor="#C62828"
+                                    Clicked="btnExcluir_Clicked"/>
+
+                            </Grid>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

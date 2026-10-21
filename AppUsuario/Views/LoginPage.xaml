@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppUsuario.Views.LoginPage"
+             Title="Login">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="10">
+
+            <Label
+                Text="Login"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Margin="0,40,0,20"/>
+
+            <Label Text="E-mail"/>
+
+            <Entry
+                Placeholder="Digite seu e-mail"
+                Text="{Binding Email}"/>
+
+            <Label
+                Text="Senha"
+                Margin="0,10,0,0"/>
+
+            <Entry
+                Placeholder="Digite sua senha"
+                IsPassword="True"
+                Text="{Binding Senha}"/>
+
+            <Button
+                Text="Entrar"
+                Clicked="btnEntrar_Clicked"
+                Margin="0,20,0,0"/>
+
+            <Button
+                Text="Registre-se"
+                BackgroundColor="#EEEEEE"
+                TextColor="#1976D2"
+                Clicked="btnRegistrar_Clicked"/>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

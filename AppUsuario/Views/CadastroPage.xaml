@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppUsuario.Views.CadastroPage"
+             Title="Registre-se">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="10">
+
+            <Label
+                Text="Cadastro de Usuário"
+                FontSize="26"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Margin="0,20,0,20"/>
+
+            <Label Text="Nome"/>
+
+            <Entry
+                Placeholder="Digite seu nome"
+                Text="{Binding Nome}"/>
+
+            <Label Text="CPF"/>
+
+            <Entry
+                Placeholder="Digite seu CPF"
+                Keyboard="Numeric"
+                Text="{Binding Cpf}"/>
+
+            <Label Text="E-mail"/>
+
+            <Entry
+                Placeholder="Digite seu e-mail"
+                Text="{Binding Email}"/>
+
+            <Label Text="Senha"/>
+
+            <Entry
+                Placeholder="Digite sua senha"
+                IsPassword="True"
+                Text="{Binding Senha}"/>
+
+            <Label Text="Tipo de usuário"/>
+
+            <Picker
+                Title="Escolha o tipo"
+                ItemsSource="{Binding TiposUsuario}"
+                SelectedItem="{Binding Tipo}"
+                IsEnabled="{Binding PodeEscolherTipo}"
+                TextColor="{StaticResource Black}"
+                BackgroundColor="{StaticResource InputBackground}"
+                HeightRequest="45"/>
+
+            <Label Text="Data de nascimento"/>
+
+            <DatePicker
+                Date="{Binding DataNascimento}"/>
+
+            <Button
+                Text="Salvar"
+                Clicked="btnSalvar_Clicked"
+                Margin="0,20,0,0"/>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
